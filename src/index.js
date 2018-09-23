@@ -1,30 +1,45 @@
 class Sorter {
+  compareNumeric(a,b){
+    if (a > b) return 1;
+    if (a < b) return -1;
+  }
+
   constructor() {
-    // your implementation
+    this.elements = [];
+    this.comparator = this.compareNumeric;
   }
 
   add(element) {
-    // your implementation
+      this.elements.push(element);
+      return;
   }
 
   at(index) {
-    // your implementation
+    return this.elements[index];
   }
 
   get length() {
-    // your implementation
+    return this.elements.length;
   }
 
   toArray() {
-    // your implementation
+    return this.elements;
   }
 
   sort(indices) {
-    // your implementation
+    var tempArr = [];
+    for (var i = 0; i < indices.length; i++){
+      tempArr[i] = this.elements[indices[i]];
+    }
+    tempArr.sort(this.comparator);
+    indices.sort(this.compareNumeric);
+    for (var i = 0; i < indices.length; i++){
+      this.elements[indices[i]] = tempArr[i];
+    }
   }
 
   setComparator(compareFunction) {
-    // your implementation
+    this.comparator = compareFunction;
   }
 }
 
